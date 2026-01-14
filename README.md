@@ -18,7 +18,11 @@ npm run dev
 ```
 
 Open in browser
+
+```
 http://localhost:5173
+```
+
 
 Technical Decisions
 State Management
