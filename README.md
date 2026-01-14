@@ -9,9 +9,9 @@ git clone <https://github.com/eng-mahdi-alsholi/kanban_board>
 cd <KANBAN>
 
 **Install dependencies**
-`npm install`
-`Run the development server`
-`npm run dev`
+`npm install`<br />
+`Run the development server`<br />
+`npm run dev`<br />
 
 
 Open in browser
