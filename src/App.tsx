@@ -28,7 +28,7 @@ const App = () => {
    */
 
   useEffect(() => {
-    // 
+    //
     localStorage.setItem(STORAGE_KEY, JSON.stringify(columns));
   }, [columns]);
 
@@ -155,7 +155,7 @@ const App = () => {
         </h1>
 
         {/* Add / Update Task */}
-        <div className="mb-8 w-full flex max-w-lg shadow-lg rounded-lg overflow-hidden mx-auto">
+        <div className="mb-8  w-full flex max-w-lg shadow-lg rounded-lg overflow-hidden mx-auto">
           <div className="flex-grow flex flex-col">
             <input
               type="text"
@@ -170,7 +170,7 @@ const App = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description..."
-              className="flex-grow p-3 bg-zinc-700 text-white outline-none"
+              className="flex-grow  p-3 bg-zinc-700 text-white outline-none"
               onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
             />
           </div>
@@ -178,7 +178,7 @@ const App = () => {
           <select
             value={activeColumn}
             onChange={(e) => setActiveColumn(e.target.value as ColumnId)}
-            className="p-3 bg-zinc-700 text-white border-l border-zinc-600"
+            className="p-3  bg-zinc-700 text-white border-l border-zinc-600"
           >
             {(Object.keys(columns) as ColumnId[]).map((colId) => (
               <option key={colId} value={colId}>

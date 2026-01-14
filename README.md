@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+**React Kanban Board**
+A simple Kanban board built with React, TypeScript, and Tailwind CSS.
+It supports creating, editing, deleting, and dragging tasks between columns, with persistence via **localStorage**.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Setup Steps**
 
-Currently, two official plugins are available:
+Clone the repository
+git clone <https://github.com/eng-mahdi-alsholi/kanban_board>
+cd <KANBAN>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Install dependencies**
+`npm install
+Run the development server
+npm run dev
+`
+Open in browser
+http://localhost:5173
 
-## React Compiler
+Technical Decisions
+State Management
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Used React hooks (useState, useRef, useEffect) instead of external state libraries to keep the app lightweight.
 
-## Expanding the ESLint configuration
+Modeled edit state as:
+{ columnId, taskId } | null
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+instead of a boolean to preserve task identity and avoid lossy state.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Drag & Drop
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Implemented using the native HTML Drag and Drop API.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Stored the dragged item in useRef to avoid unnecessary re-renders and ensure smooth dragging.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Persistence
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Used localStorage as a persistence layer.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+State is loaded once via a lazy initializer and synced on every update using useEffect.
+
+React state remains the single source of truth.
+
+TypeScript
+
+Strong typing for tasks, columns, and handlers to prevent runtime errors.
+
+Shared domain types (Item, ColumnId, Columns) across components.
+
+Styling
+
+Used Tailwind CSS for fast iteration and consistent styling.
+
+Kept UI and logic strictly separated.
+
+What I’d Improve With More Time
+
+Add keyboard accessibility for drag-and-drop.
+
+Improve drag feedback (placeholder positioning, smoother animations).
+
+Add task ordering within columns.
+
+Introduce undo / redo support.
+
+Add tests (unit tests for reducers, integration tests for drag behavior).
+
+Consider React DnD or @dnd-kit for more advanced drag interactions.
+
+Notes
+This project intentionally avoids unnecessary libraries to keep the focus on:
+
+clean state modeling
+
+correctness
+
+maintainability
+
+clear separation of concerns
