@@ -1,4 +1,4 @@
-**React Kanban Board**
+**React Kanban Board**<br />
 A simple Kanban board built with React, TypeScript, and Tailwind CSS.
 It supports creating, editing, deleting, and dragging tasks between columns, with persistence via **localStorage**.
 
@@ -8,7 +8,7 @@ Clone the repository
 git clone <https://github.com/eng-mahdi-alsholi/kanban_board>
 cd <KANBAN>
 
-**Install dependencies**
+**Install dependencies**<br />
 `npm install`<br />
 `Run the development server`<br />
 `npm run dev`<br />
